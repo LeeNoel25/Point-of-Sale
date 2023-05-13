@@ -2,9 +2,9 @@
   "name": "raid",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"nodemon server.js\" \"vite --port 3001\"",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -18,6 +18,7 @@
     "express": "^4.18.2",
     "framer-motion": "^10.12.10",
     "mongoose": "^7.1.1",
+    "morgan": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1"
@@ -28,10 +29,12 @@
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.0.0",
+    "concurrently": "^8.0.1",
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "nodemon": "^2.0.22",
     "typescript": "^5.0.2",
-    "vite": "^4.3.2"
+    "vite": "^4.3.5"
   }
 }
