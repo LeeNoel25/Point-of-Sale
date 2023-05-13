@@ -2,6 +2,7 @@ const Fruit = require("../models/Fruit");
 
 const create = async (req, res) => {
   try {
+    console.log(req.body);
     const createdFruit = await Fruit.create(req.body);
     res.status(201).json(createdFruit);
   } catch (error) {

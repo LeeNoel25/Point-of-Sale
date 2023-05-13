@@ -1,19 +1,18 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Grid, GridItem } from '@chakra-ui/react'
-
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import NavBar from './components/NavBar'
+import CreateFruit from './pages/CreateFruit/CreateFruitPage';
+// import Home from './pages/POS/Home';
 
-function App() {
-
+export default function App() {
   return (
-<Router>
-    <Grid>
-<GridItem><NavBar/></GridItem>
-<GridItem>Tet</GridItem>
-<GridItem>Tes</GridItem>
-</Grid>
-</Router>
+    <Router>
+      <NavBar/>
+      <Routes>
+        {/* <Route path="/" element={<Home/>}/> */}
+        <Route path="/new" element={<CreateFruit/>}/>
+      </Routes>
+    </Router>
   )
 }
 
-export default App
+
