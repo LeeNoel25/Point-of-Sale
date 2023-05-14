@@ -5,7 +5,7 @@ require("dotenv").config();
 require("./config/database");
 
 //-------------------------------Routes------------------
-const fruitsRouter = require("./routes/fruitsRouter");
+const productsRouter = require("./routes/productsRouter");
 const salesRouter = require("./routes/salesRouter");
 
 //------------------------------Middleware---------------
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "dist")));
 
 //-------------------------------Routes------------------
-app.use("/api/fruits", fruitsRouter);
+app.use("/api/products", productsRouter);
 app.use("/api/sale", salesRouter);
 
 //-------------------------------------------------------

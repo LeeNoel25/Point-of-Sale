@@ -1,7 +1,16 @@
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import NavBar from './components/NavBar'
-import CreateFruit from './pages/CreateFruit/CreateFruitPage';
+import CreateProduct from './pages/CreateProduct/CreateProductPage';
 import POS from './pages/POS/POS';
+
+export type LineItemType = {
+  _id: string,
+  name: string,
+  imgurl: string;
+  price: number;
+  brand: string;
+  quantity: number;
+};
 
 export default function App() {
   return (
@@ -9,7 +18,7 @@ export default function App() {
       <NavBar/>
       <Routes>
         <Route path="/" element={<POS/>}/>
-        <Route path="/new" element={<CreateFruit/>}/>
+        <Route path="/new" element={<CreateProduct/>}/>
       </Routes>
     </Router>
   )

@@ -1,4 +1,4 @@
-const Fruit = require("../models/Fruit");
+const Product = require("../models/Product");
 const Sale = require("../models/Sale");
 
 const create = async (req, res) => {
@@ -29,7 +29,7 @@ const deleteSale = async (req, res) => {
 };
 
 module.exports = {
-    create,
-    index,
-    delete: deleteSale,
+  create,
+  index,
+  delete: deleteSale,
 };

@@ -9,7 +9,7 @@ const NavBar = () => {
             <ChakraLink as={RouterLink} to="/">
                 <Image src={logo} boxSize='60px' alt="logo" />
             </ChakraLink>
-            <ChakraLink as={RouterLink} to="/new">Add New Fruit</ChakraLink>
+            <ChakraLink as={RouterLink} to="/new">Add New Product</ChakraLink>
         </HStack>
         </List>
     )

@@ -1,17 +1,17 @@
 import { Box, Heading, Container } from '@chakra-ui/react';
-import CreateFruitForm from './CreateFruitForm';
+import CreateProductForm from './CreateProductForm';
 
-const CreateFruitPage = () => {
+const CreateProductPage = () => {
     return(
         <Container>
           <Box>
             <Heading as="h1" size="lg">
-              New Fruit
+              New Product
             </Heading>
-            <CreateFruitForm />
+            <CreateProductForm />
           </Box>
         </Container>
     )
 }
 
-export default CreateFruitPage;
+export default CreateProductPage;

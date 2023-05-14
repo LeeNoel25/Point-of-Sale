@@ -1,15 +1,15 @@
 import { ObjectId } from 'mongodb';
 
-export type Fruit = {
+export type Product = {
     _id?: ObjectId,
     name: string,
     imgurl: string,
     price: number,
-    category: string
+    brand: string
 };
 
 export type Item = {
-    fruit: ObjectId,
+    product: ObjectId,
     quantity: number,
 };
 

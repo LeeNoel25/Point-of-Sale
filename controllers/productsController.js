@@ -1,10 +1,10 @@
-const Fruit = require("../models/Fruit");
+const Product = require("../models/Product");
 
 const create = async (req, res) => {
   try {
     console.log(req.body);
-    const createdFruit = await Fruit.create(req.body);
-    res.status(201).json(createdFruit);
+    const createdProduct = await Product.create(req.body);
+    res.status(201).json(createdProduct);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -12,8 +12,8 @@ const create = async (req, res) => {
 
 const index = async (req, res) => {
   try {
-    const allFruits = await Fruit.find({});
-    res.status(200).json(allFruits);
+    const allProducts = await Product.find({});
+    res.status(200).json(allProducts);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -21,8 +21,8 @@ const index = async (req, res) => {
 
 const show = async (req, res) => {
   try {
-    const showFruit = await Fruit.findById(req.params.id);
-    res.status(200).json(showFruit);
+    const showProduct = await Product.findById(req.params.id);
+    res.status(200).json(showProduct);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -30,21 +30,21 @@ const show = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const updatedFruit = await Fruit.findByIdAndUpdate(
+    const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
     );
-    res.status(200).json(updatedFruit);
+    res.status(200).json(updatedProduct);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-const deleteFruit = async (req, res) => {
+const deleteProduct = async (req, res) => {
   try {
-    const deletedFruit = await Fruit.findByIdAndDelete(req.params.id);
-    res.status(200).json(deletedFruit);
+    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+    res.status(200).json(deletedProduct);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -53,7 +53,7 @@ const deleteFruit = async (req, res) => {
 module.exports = {
   create,
   index,
-  delete: deleteFruit,
+  delete: deleteProduct,
   update,
   show,
 };

@@ -2,26 +2,26 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Button } from '@chakra-ui/react'
 import * as yup from "yup"
-import { Fruit } from '../../utilities/type-declaration';
+import { Product } from '../../utilities/type-declaration';
 
 const formSchema = yup.object().shape({
     name: yup.string().min(3, "Must be at least 3 characters").required("This field is required"),
     imgurl: yup.string().url("Must be a valid Url").required("This field is required"),
     price: yup.number().min(0.1, "Must be at least 10 cents").required("This field is required"),
-    category: yup.string().min(3, "Must be at least 3 characters").required("This field is required"),
+    brand: yup.string().min(3, "Must be at least 3 characters").required("This field is required"),
 })
 
-const CreateFruitForm = () => {
-    const [fruit, setFruit] = useState<Fruit>({
+const CreateProductForm = () => {
+    const [product, setProduct] = useState<Product>({
     name: "",
     imgurl: "",
     price: 0,
-    category: ""
+    brand: ""
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFruit({
-      ...fruit,
+    setProduct({
+      ...product,
       [event.target.name]: event.target.value
     });
   };
@@ -30,12 +30,12 @@ const CreateFruitForm = () => {
     event.preventDefault();
 
     formSchema
-    .validate(fruit)
+    .validate(product)
     .then(() => {
-        axios.post("/api/fruits/new", { ...fruit, price: Number(fruit.price) })
+        axios.post("/api/products/new", { ...product, price: Number(product.price) })
       .then((response) => {
         console.log(response);
-        setFruit({ name: "", imgurl: "", price: 0, category: "" });
+        setProduct({ name: "", imgurl: "", price: 0, brand: "" });
       })
       .catch((error) => {
         console.error(error);
@@ -50,26 +50,26 @@ const CreateFruitForm = () => {
     <form onSubmit={handleSubmit}>
       <label>
         Name:
-        <input type="text" name="name" value={fruit.name} onChange={handleChange} />
+        <input type="text" name="name" value={product.name} onChange={handleChange} />
       </label>
 
       <label>
         Image URL:
-        <input type="text" name="imgurl" value={fruit.imgurl} onChange={handleChange} />
+        <input type="text" name="imgurl" value={product.imgurl} onChange={handleChange} />
       </label>
 
       <label>
         Price:
-        <input type="number" name="price" value={fruit.price} onChange={handleChange} />
+        <input type="number" name="price" value={product.price} onChange={handleChange} />
       </label>
 
       <label>
-        Category:
-        <input type="text" name="category" value={fruit.category} onChange={handleChange} />
+        Brand:
+        <input type="text" name="brand" value={product.brand} onChange={handleChange} />
       </label>
-      <Button type="submit" value="Submit">Create Fruit</Button>
+      <Button type="submit" value="Submit">Create Product</Button>
     </form>
   );
 };
 
-export default CreateFruitForm;
+export default CreateProductForm;
