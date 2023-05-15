@@ -56,7 +56,10 @@ const POS = () => {
           <Box flex="1" pr={["0", "2"]}>
             <SimpleGrid columns={3} spacing="2">
               {data?.map((product: LineItemType) => (
-                <ProductCard product={product} handleincreaseQuantity={handleincreaseQuantity} />
+                <ProductCard 
+                key={product._id} 
+                product={product} 
+                handleincreaseQuantity={handleincreaseQuantity} />
               ))}
             </SimpleGrid>
           </Box>
@@ -65,7 +68,7 @@ const POS = () => {
               lineItems={lineItems}
               increaseQuantity={handleincreaseQuantity}
               reduceQuantity={handlereduceQuantity}
-                totalItems={totalItems}
+              totalItems={totalItems}
             />
           </Box>
         </Flex>
