@@ -21,7 +21,6 @@ const POS = () => {
 
     const handleincreaseQuantity = (clickedProduct: LineItemType) => {
         setLineItems(current => {
-            // 1. Is the item already added in the cart?
             const isProductInCart = current.find(product => product._id === clickedProduct._id);
       
             if (isProductInCart) {
@@ -31,7 +30,6 @@ const POS = () => {
                   : product
               );
             }
-            // First time the item is added
             return [...current, { ...clickedProduct, quantity: 1 }];
           });
         };
@@ -54,6 +52,16 @@ const POS = () => {
       setLineItems([]);
     };
 
+    const removeLineItem = (clickedProduct: LineItemType) => {
+      for (let i = 0; i < lineItems.length; i++) {
+        if (lineItems[i]._id === clickedProduct._id) {
+          lineItems.splice(i, 1);
+          setLineItems([...lineItems]);
+          return;
+        }
+      }
+    };
+
     return (
         <Flex direction={["column", "row"]} justify="space-between">
           <Box flex="1" pr={["0", "2"]}>
@@ -73,6 +81,7 @@ const POS = () => {
               reduceQuantity={handlereduceQuantity}
               totalItems={totalItems}
               clearCart={clearCart}
+              removeLineItem={removeLineItem}
             />
           </Box>
         </Flex>

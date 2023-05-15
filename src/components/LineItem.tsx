@@ -5,10 +5,11 @@ type Props = {
     product: LineItemType;
     increaseQuantity: (clickedItem: LineItemType) => void;
     reduceQuantity: (id: string) => void;
+    removeLineItem: (clickedItem: LineItemType) => void;
 };
 
-const LineItem: React.FC<Props> = ({ product, increaseQuantity, reduceQuantity }) => (
-  <Grid templateColumns="repeat(4, 1fr)" gap={6}>
+const LineItem: React.FC<Props> = ({ product, increaseQuantity, reduceQuantity, removeLineItem }) => (
+  <Grid templateColumns="repeat(5, 1fr)" gap={6}>
     <GridItem>
       <h4>{product.name}</h4>
     </GridItem>
@@ -29,8 +30,14 @@ const LineItem: React.FC<Props> = ({ product, increaseQuantity, reduceQuantity }
     <GridItem>
       <h4>${(product.quantity * product.price).toFixed(2)}</h4>
     </GridItem>
+    <GridItem>
+    <Button size='sm' variant='outline' onClick={() => removeLineItem(product)} height="24px" width="60px">
+      Remove
+    </Button>
+    </GridItem>
   </Grid>
 );
+
 
 export default LineItem;
     {/* <Image src={product.imgurl} alt={product.name} /> */}

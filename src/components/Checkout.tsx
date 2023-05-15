@@ -10,9 +10,10 @@ type Props = {
     reduceQuantity: (id: string) => void;
     totalItems: number;
     clearCart: () => void;
+    removeLineItem: (clickedProduct: LineItemType) => void;
 };
 
-const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, clearCart }) => {
+const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, clearCart, removeLineItem }) => {
   const [sale, setSale] = useState<LineItemType[] | null>(null);
 
   const calculateTotal = (product: LineItemType[]) =>
@@ -33,17 +34,16 @@ const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, cl
       });
   };
 
-
-
   return (
     <Box>
       <h2>Shopping Cart ({lineItems.length} items)</h2>
       {lineItems.length === 0 ? <p>No items in cart.</p> : null}
-      <Grid templateColumns="repeat(4, 1fr)" gap={6} alignItems="center">
+      <Grid templateColumns="repeat(5, 1fr)" gap={6} alignItems="center">
         <GridItem><h3>Name</h3></GridItem>
         <GridItem><h3>Quantity</h3></GridItem>
          <GridItem><h3>Price</h3></GridItem>
         <GridItem><h3>Total</h3></GridItem>
+        <GridItem><h3>Remove</h3></GridItem>
       </Grid>
       {lineItems.map(product => (
         <LineItem
@@ -51,6 +51,7 @@ const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, cl
           product={product}
           increaseQuantity={increaseQuantity}
           reduceQuantity={reduceQuantity}
+          removeLineItem={removeLineItem}
         />
       ))}
       <h2>Total: ${calculateTotal(lineItems).toFixed(2)}</h2>
