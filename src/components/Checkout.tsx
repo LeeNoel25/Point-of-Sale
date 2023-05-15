@@ -11,6 +11,8 @@ type Props = {
     totalItems: number;
 };
 
+
+
 const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity }) => {
   const [sale, setSale] = useState<LineItemType[] | null>(null);
 
@@ -19,8 +21,9 @@ const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity }) 
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
+    const total = calculateTotal(lineItems);
 
-    axios.post(`/api/sale`, { lineItems, calculateTotal })
+    axios.post(`/api/sale`, { items: lineItems, total })
     .then((response) => {
         console.log(response);
         setSale([]);
