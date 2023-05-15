@@ -37,7 +37,8 @@ const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, cl
   return (
     <Box>
       <h2>Shopping Cart ({lineItems.length} items)</h2>
-      {lineItems.length === 0 ? <p>No items in cart.</p> : null}
+      {lineItems.length === 0 ? <p>No items in cart.</p> : (
+        <>
       <Grid templateColumns="repeat(5, 1fr)" gap={6} alignItems="center">
         <GridItem><h3>Name</h3></GridItem>
         <GridItem><h3>Quantity</h3></GridItem>
@@ -56,8 +57,10 @@ const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, cl
       ))}
       <h2>Total: ${calculateTotal(lineItems).toFixed(2)}</h2>
       <Button onClick={handleSubmit}>Create Sale</Button>
+      </>
+      )}
     </Box>
-  );
+  )
 };
 
 export default Cart;

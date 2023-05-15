@@ -6,6 +6,6 @@ router
   .post("/", salesController.create)
   //history page
   .get("/history", salesController.index)
-  .delete("/history/:saleId", salesController.delete);
+  .delete("/history/:id", salesController.delete);
 
 module.exports = router;
