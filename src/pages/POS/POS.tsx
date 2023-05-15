@@ -50,6 +50,9 @@ const POS = () => {
     };
 
     const totalItems = lineItems.reduce((cumulated: number, product) => cumulated + product.quantity, 0);
+    const clearCart = () => {
+      setLineItems([]);
+    };
 
     return (
         <Flex direction={["column", "row"]} justify="space-between">
@@ -69,6 +72,7 @@ const POS = () => {
               increaseQuantity={handleincreaseQuantity}
               reduceQuantity={handlereduceQuantity}
               totalItems={totalItems}
+              clearCart={clearCart}
             />
           </Box>
         </Flex>

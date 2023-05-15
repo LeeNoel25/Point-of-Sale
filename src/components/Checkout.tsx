@@ -9,11 +9,10 @@ type Props = {
     increaseQuantity: (clickedProduct: LineItemType) => void;
     reduceQuantity: (id: string) => void;
     totalItems: number;
+    clearCart: () => void;
 };
 
-
-
-const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity }) => {
+const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, clearCart }) => {
   const [sale, setSale] = useState<LineItemType[] | null>(null);
 
   const calculateTotal = (product: LineItemType[]) =>
@@ -27,11 +26,14 @@ const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity }) 
     .then((response) => {
         console.log(response);
         setSale([]);
+        clearCart();
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
+
 
   return (
     <Box>
