@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button } from '@chakra-ui/react'
 import * as yup from "yup"
 import { Product } from '../../utilities/type-declaration';
+import { useNavigate } from 'react-router-dom';
 
 const formSchema = yup.object().shape({
     name: yup.string().min(3, "Must be at least 3 characters").required("This field is required"),
@@ -12,6 +13,7 @@ const formSchema = yup.object().shape({
 })
 
 const CreateProductForm = () => {
+  const navigate = useNavigate();
     const [product, setProduct] = useState<Product>({
     name: "",
     imgurl: "",
@@ -36,6 +38,7 @@ const CreateProductForm = () => {
       .then((response) => {
         console.log(response);
         setProduct({ name: "", imgurl: "", price: 0, brand: "" });
+        navigate("/");
       })
       .catch((error) => {
         console.error(error);
