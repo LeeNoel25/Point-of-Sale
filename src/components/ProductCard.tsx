@@ -1,4 +1,4 @@
-import { Box, Image, Text, Button } from "@chakra-ui/react";
+import { Box, Image, Text, Button, AspectRatio, Flex } from "@chakra-ui/react";
 import { LineItemType } from '../App'
 
 interface Props {
@@ -7,16 +7,22 @@ interface Props {
 }
 
 const ProductCard: React.FC<Props> = ({ product, handleincreaseQuantity }) => (
-  <Box>
-    <Button onClick={() => handleincreaseQuantity(product)} p={0}>
-      <Image boxSize="200px" src={product.imgurl} alt={product.name} />
-    </Button>
-    <Text mt="4" fontSize="xl" fontWeight="semibold" lineHeight="short">
+  <Box bg="white" boxShadow="base" p={5} borderRadius="md">
+    <AspectRatio ratio={1} overflow="hidden">
+      <Button p={0} onClick={() => handleincreaseQuantity(product)}  >
+        <Image src={product.imgurl} alt={product.name} />
+      </Button>
+    </AspectRatio>
+    <Text mt={4} fontSize="xl" fontWeight="semibold" >
       {product.name}
     </Text>
-    <Text mt="2">{product.brand}</Text>
-    <Text mt="2">${product.price}</Text>
+    <Flex justifyContent="space-between" mt={2}>
+      <Text>{product.brand}</Text>
+      <Text >${product.price}</Text>
+    </Flex>
   </Box>
 );
+
+
 
 export default ProductCard;

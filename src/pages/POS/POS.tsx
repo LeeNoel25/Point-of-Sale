@@ -63,29 +63,31 @@ const POS = () => {
     };
 
     return (
-        <Flex direction={["column", "row"]} justify="space-between">
-          <Box flex="1" pr={["0", "2"]}>
-            <SimpleGrid columns={3} spacing="2">
-              {data?.map((product: LineItemType) => (
-                <ProductCard 
-                key={product._id} 
-                product={product} 
-                handleincreaseQuantity={handleincreaseQuantity} />
-              ))}
-            </SimpleGrid>
-          </Box>
-          <Box flex="1" pl={["0", "2"]}>
-            <Checkout
-              lineItems={lineItems}
-              increaseQuantity={handleincreaseQuantity}
-              reduceQuantity={handlereduceQuantity}
-              totalItems={totalItems}
-              clearCart={clearCart}
-              removeLineItem={removeLineItem}
-            />
-          </Box>
-        </Flex>
-      );
+      <Flex direction={["column", "row"]} mt={20}>
+        <Box flex="1" pr={5}>
+          <SimpleGrid columns={[1, null, 2, 4]} spacing={10}>
+            {data?.map((product: LineItemType) => (
+              <ProductCard
+                key={product._id}
+                product={product}
+                handleincreaseQuantity={handleincreaseQuantity}
+              />
+            ))}
+          </SimpleGrid>
+        </Box>
+        <Box flex="1" pl={5}>
+          <Checkout
+            lineItems={lineItems}
+            increaseQuantity={handleincreaseQuantity}
+            reduceQuantity={handlereduceQuantity}
+            totalItems={totalItems}
+            clearCart={clearCart}
+            removeLineItem={removeLineItem}
+          />
+        </Box>
+      </Flex>
+    );
+    
 }
 
 export default POS;

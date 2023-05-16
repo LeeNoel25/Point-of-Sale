@@ -15,8 +15,7 @@ const CheckoutLog: React.FC<CheckoutLogProps> = ({ items, total, _id }) => {
             <Td>
                 {items.map(item => (
                     <div key={item._id}>
-                        <p>Name: {item.name}</p>
-                        <p>Quantity: {item.quantity}</p>
+                        <p>{item.name} ({item.quantity})</p>
                     </div>
                 ))}
             </Td>

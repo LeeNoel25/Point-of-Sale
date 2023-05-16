@@ -1,8 +1,7 @@
 import { LineItemType}  from '../App'
 import LineItem from './LineItem';
-import { Box, Grid, GridItem, Button } from "@chakra-ui/react";
+import { Box, Grid, Button, Text, Heading, useToast } from "@chakra-ui/react";
 import axios from 'axios';
-import React, { useState } from 'react';
 
 type Props = {
     lineItems: LineItemType[];
@@ -14,7 +13,8 @@ type Props = {
 };
 
 const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, clearCart, removeLineItem }) => {
-  const [sale, setSale] = useState<LineItemType[] | null>(null);
+
+  const toast = useToast();
 
   const calculateTotal = (product: LineItemType[]) =>
     product.reduce((current: number, product) => current + product.quantity * product.price, 0);
@@ -26,41 +26,54 @@ const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, cl
     axios.post(`/api/sale`, { items: lineItems, total })
     .then((response) => {
         console.log(response);
-        setSale([]);
+
         clearCart();
+        toast({
+          title: "Sale Successful.",
+          description: "Your sale was successful.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
       })
       .catch((error) => {
         console.error(error);
+        toast({
+          title: "Sale Unsuccessful.",
+          description: "Something went wrong.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
       });
   };
 
   return (
-    <Box>
-      <h2>Shopping Cart ({lineItems.length} items)</h2>
-      {lineItems.length === 0 ? <p>No items in cart.</p> : (
+    <Box bg="white" boxShadow="base" p={5} borderRadius="md">
+      <Heading size="lg" mb={5}>Shopping Cart ({lineItems.length} items)</Heading>
+      {lineItems.length === 0 ? <Text>No items in cart.</Text> : (
         <>
-      <Grid templateColumns="repeat(5, 1fr)" gap={6} alignItems="center">
-        <GridItem><h3>Name</h3></GridItem>
-        <GridItem><h3>Quantity</h3></GridItem>
-         <GridItem><h3>Price</h3></GridItem>
-        <GridItem><h3>Total</h3></GridItem>
-        <GridItem><h3>Remove</h3></GridItem>
-      </Grid>
-      {lineItems.map(product => (
-        <LineItem
-          key={product._id}
-          product={product}
-          increaseQuantity={increaseQuantity}
-          reduceQuantity={reduceQuantity}
-          removeLineItem={removeLineItem}
-        />
-      ))}
-      <h2>Total: ${calculateTotal(lineItems).toFixed(2)}</h2>
-      <Button onClick={handleSubmit}>Create Sale</Button>
-      </>
+          <Grid templateColumns="repeat(5, 1fr)" gap={6} alignItems="center" mb={5}>
+            <Text fontWeight="bold">Name</Text>
+            <Text fontWeight="bold">Quantity</Text>
+            <Text fontWeight="bold">Price</Text>
+            <Text fontWeight="bold">Total</Text>
+          </Grid>
+          {lineItems.map(product => (
+            <LineItem
+              key={product._id}
+              product={product}
+              increaseQuantity={increaseQuantity}
+              reduceQuantity={reduceQuantity}
+              removeLineItem={removeLineItem}
+            />
+          ))}
+          <Heading size="md" mt={5}>Total: ${calculateTotal(lineItems).toFixed(2)}</Heading>
+          <Button colorScheme="teal" onClick={handleSubmit} mt={5}>Create Sale</Button>
+        </>
       )}
     </Box>
-  )
+  );
 };
 
 export default Cart;

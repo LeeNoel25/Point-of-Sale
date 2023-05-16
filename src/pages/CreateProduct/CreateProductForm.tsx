@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Button } from '@chakra-ui/react'
+import { Button, FormControl, FormLabel, Input, Box, Flex, VStack, Heading } from '@chakra-ui/react';
 import * as yup from "yup"
 import { Product } from '../../utilities/type-declaration';
 import { useNavigate } from 'react-router-dom';
@@ -49,30 +49,47 @@ const CreateProductForm = () => {
   });
 };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" name="name" value={product.name} onChange={handleChange} />
-      </label>
+return (
+  <Flex justifyContent="center" alignItems="center" height="60vh">
+    <Box p={8} borderRadius="md" bg="white" boxShadow="base"  width="100%">
+      <Heading as="h1" size="lg" textAlign="center" mb={5}>
+        New Product
+      </Heading>
+      <form onSubmit={handleSubmit}>
+        <VStack spacing={4}>
+          <FormControl>
+            <FormLabel>Product Name</FormLabel>
+            <Input type="text" name="name" placeholder="Product Name" value={product.name} onChange={handleChange} />
+          </FormControl>
 
-      <label>
-        Image URL:
-        <input type="text" name="imgurl" value={product.imgurl} onChange={handleChange} />
-      </label>
+          <FormControl>
+            <FormLabel>Image URL</FormLabel>
+            <Input type="text" name="imgurl" placeholder="Image URL" value={product.imgurl} onChange={handleChange} />
+          </FormControl>
 
-      <label>
-        Price:
-        <input type="number" name="price" value={product.price} onChange={handleChange} />
-      </label>
+          <FormControl>
+            <FormLabel>Price ($)</FormLabel>
+            <Input type="number" name="price" placeholder="Price ($)" value={product.price} onChange={handleChange} />
+          </FormControl>
 
-      <label>
-        Brand:
-        <input type="text" name="brand" value={product.brand} onChange={handleChange} />
-      </label>
-      <Button type="submit" value="Submit">Create Product</Button>
-    </form>
-  );
+          <FormControl>
+            <FormLabel>Brand</FormLabel>
+            <Input type="text" name="brand" placeholder="Brand" value={product.brand} onChange={handleChange} />
+          </FormControl>
+
+          <Button colorScheme="teal" size="md" type="submit">
+            Create Product
+          </Button>
+        </VStack>
+      </form>
+    </Box>
+  </Flex>
+);
+
+
+
+
+
 };
 
 export default CreateProductForm;
