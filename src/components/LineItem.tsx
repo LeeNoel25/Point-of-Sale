@@ -40,4 +40,4 @@ const LineItem: React.FC<Props> = ({ product, increaseQuantity, reduceQuantity, 
 
 
 export default LineItem;
-    {/* <Image src={product.imgurl} alt={product.name} /> */}
+
