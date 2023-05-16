@@ -11,7 +11,7 @@ const itemSchema = new Schema(
 const SaleSchema = new Schema(
   {
     items: [itemSchema],
-    total: { type: Number, required: true, min: 0.01 },
+    total: { type: Number, required: true, min: 0.1 },
   },
   { timestamps: true }
 );

@@ -8,7 +8,6 @@ const getCheckoutLogs = async (): Promise<SaleType[]> =>
 
 const CheckoutHistoryPage = () => {
   const { data, isLoading } = useQuery<SaleType[]>('checkoutLogs', getCheckoutLogs);
-
   if (isLoading) return <div>Loading...</div>;
 
   return (
