@@ -11,8 +11,8 @@ const NavBar = () => {
           color="white"
         >
         <ChakraLink as={RouterLink} to="/" mr={200} fontWeight="semibold" >Home</ChakraLink>
-        <ChakraLink as={RouterLink} to="/new" mr={200} fontWeight="semibold">Add New Product</ChakraLink>
-        <ChakraLink as={RouterLink} to="/history" fontWeight="semibold">Sale History</ChakraLink>
+        <ChakraLink as={RouterLink} to="/new" mr={200} fontWeight="semibold">Add new product</ChakraLink>
+        <ChakraLink as={RouterLink} to="/history" fontWeight="semibold">Sale history</ChakraLink>
         </Flex>
     )
 }

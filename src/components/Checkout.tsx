@@ -26,7 +26,6 @@ const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, cl
     axios.post(`/api/sale`, { items: lineItems, total })
     .then((response) => {
         console.log(response);
-
         clearCart();
         toast({
           title: "Sale Successful.",
