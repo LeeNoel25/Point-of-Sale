@@ -1,19 +1,20 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Button, FormControl, FormLabel, Input, Box, Flex, VStack, Heading } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, Box, Flex, VStack, Heading, useToast } from '@chakra-ui/react';
 import * as yup from "yup"
 import { Product } from '../../utilities/type-declaration';
 import { useNavigate } from 'react-router-dom';
 
 const formSchema = yup.object().shape({
-    name: yup.string().min(3, "Must be at least 3 characters").required("This field is required"),
-    imgurl: yup.string().url("Must be a valid Url").required("This field is required"),
-    price: yup.number().min(0.1, "Must be at least 10 cents").required("This field is required"),
-    brand: yup.string().min(3, "Must be at least 3 characters").required("This field is required"),
+    name: yup.string().min(3, "Name must have at least 3 characters").required("This field is required"),
+    imgurl: yup.string().url("Url is not valid").required("This field is required"),
+    price: yup.number().min(0.1, "Price must be at least 10 cents").required("This field is required"),
+    brand: yup.string().min(3, "Brand must have at least 3 characters").required("This field is required"),
 })
 
 const CreateProductForm = () => {
   const navigate = useNavigate();
+  const toast = useToast();
     const [product, setProduct] = useState<Product>({
     name: "",
     imgurl: "",
@@ -28,26 +29,32 @@ const CreateProductForm = () => {
     });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    formSchema
-    .validate(product)
-    .then(() => {
-        axios.post("/api/products/new", { ...product, price: Number(product.price) })
-      .then((response) => {
+  
+    try {
+      await formSchema.validate(product);
+      try {
+        const response = await axios.post("/api/products/new", { ...product });
         console.log(response);
         setProduct({ name: "", imgurl: "", price: 0, brand: "" });
         navigate("/");
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(error);
+      }
+    } catch (error) {
+      const validationError = error as Error;
+      console.error(validationError);
+      toast({
+        title: "Validation Error",
+        description: `Error: ${validationError.message}`,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
       });
-  })
-  .catch((validationError) => {
-    console.error(validationError);
-  });
-};
+    }   
+  };
+  
 
 return (
   <Flex justifyContent="center" alignItems="center" height="60vh">
@@ -85,10 +92,6 @@ return (
     </Box>
   </Flex>
 );
-
-
-
-
 
 };
 

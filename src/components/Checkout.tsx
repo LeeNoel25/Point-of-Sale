@@ -1,4 +1,4 @@
-import { LineItemType}  from '../App'
+import { LineItemType}  from '../utilities/type-declaration'
 import LineItem from './LineItem';
 import { Box, Grid, Button, Text, Heading, useToast } from "@chakra-ui/react";
 import axios from 'axios';

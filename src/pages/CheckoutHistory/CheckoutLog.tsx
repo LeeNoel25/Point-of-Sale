@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineItemType } from '../../App';  
+import { LineItemType } from '../../utilities/type-declaration';  
 import { Tr, Td } from "@chakra-ui/react";
 
 type CheckoutLogProps = {

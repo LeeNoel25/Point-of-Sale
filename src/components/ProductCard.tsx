@@ -1,5 +1,5 @@
 import { Box, Image, Text, Button, AspectRatio, Flex } from "@chakra-ui/react";
-import { LineItemType } from '../App'
+import { LineItemType } from '../utilities/type-declaration'
 
 interface Props {
   product: LineItemType;

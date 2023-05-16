@@ -1,4 +1,4 @@
-import { LineItemType}  from '../App'
+import { LineItemType}  from '../utilities/type-declaration'
 import {  Button, Grid, GridItem } from "@chakra-ui/react";
 
 type Props = {

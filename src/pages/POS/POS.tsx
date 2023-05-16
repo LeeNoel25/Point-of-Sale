@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 // import { useEffect, useState } from "react";
 
 import ProductCard from "../../components/ProductCard";
-import { LineItemType}  from '../../App'
+import { LineItemType}  from '../../utilities/type-declaration'
 import Checkout from '../../components/Checkout';
 import { SimpleGrid, Flex, Box } from "@chakra-ui/react";
 
