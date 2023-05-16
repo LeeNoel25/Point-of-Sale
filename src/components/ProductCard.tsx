@@ -3,13 +3,13 @@ import { LineItemType } from '../utilities/type-declaration'
 
 interface Props {
   product: LineItemType;
-  handleincreaseQuantity: (clickedItem: LineItemType) => void;
+  increaseQuantity: (clickedItem: LineItemType) => void;
 }
 
-const ProductCard: React.FC<Props> = ({ product, handleincreaseQuantity }) => (
+const ProductCard: React.FC<Props> = ({ product, increaseQuantity }) => (
   <Box bg="white" boxShadow="base" p={5} borderRadius="md">
     <AspectRatio ratio={1} overflow="hidden">
-      <Button p={0} onClick={() => handleincreaseQuantity(product)}  >
+      <Button p={0} onClick={() => increaseQuantity(product)}  >
         <Image src={product.imgurl} alt={product.name} />
       </Button>
     </AspectRatio>

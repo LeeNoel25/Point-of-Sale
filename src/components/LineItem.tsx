@@ -1,5 +1,5 @@
 import { LineItemType}  from '../utilities/type-declaration'
-import {  Button, Grid, GridItem } from "@chakra-ui/react";
+import {  Button, Grid, GridItem, Text } from "@chakra-ui/react";
 
 type Props = {
     product: LineItemType;
@@ -25,10 +25,10 @@ const LineItem: React.FC<Props> = ({ product, increaseQuantity, reduceQuantity, 
       </Grid>
     </GridItem>
     <GridItem>
-      <h4>${product.price}</h4>
+      <Text>${product.price}</Text>
     </GridItem>
     <GridItem>
-      <h4>${(product.quantity * product.price).toFixed(2)}</h4>
+      <Text>${(product.quantity * product.price).toFixed(2)}</Text>
     </GridItem>
     <GridItem>
     <Button size='sm' variant='outline' onClick={() => removeLineItem(product)} height="24px" width="60px">

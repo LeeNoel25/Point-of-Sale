@@ -1,14 +1,14 @@
 import { useQuery } from 'react-query';
-import { Table, Thead, Tbody, Tr, Th, Flex, Heading, Box } from "@chakra-ui/react";
-import { SaleType } from '../../App';
+import { Table, Thead, Tbody, Tr, Th, Flex, Heading, Box, Spinner } from "@chakra-ui/react";
+import { SaleType } from '../../utilities/type-declaration'
 import CheckoutLog from './CheckoutLog';
 
 const getCheckoutLogs = async (): Promise<SaleType[]> =>
-  await (await fetch("/api/sale/history")).json();
+  (await fetch("/api/sale/history")).json();
 
 const CheckoutHistoryPage = () => {
   const { data, isLoading } = useQuery<SaleType[]>('checkoutLogs', getCheckoutLogs);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner />;
 
   return (
     <Flex direction="column" p={20} alignItems="center">

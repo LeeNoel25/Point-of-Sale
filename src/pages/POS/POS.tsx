@@ -8,7 +8,7 @@ import Checkout from '../../components/Checkout';
 import { SimpleGrid, Flex, Box } from "@chakra-ui/react";
 
 const getProducts = async (): Promise<LineItemType[]> =>
-    await (await fetch("/api/products")).json();
+  (await fetch("/api/products")).json();
 
 const POS = () => {
     const [lineItems, setLineItems] = useState([] as LineItemType[]);
@@ -19,7 +19,7 @@ const POS = () => {
     console.log(data);
     if (isLoading) return <div>Loading...</div>;
 
-    const handleincreaseQuantity = (clickedProduct: LineItemType) => {
+    const increaseQuantity = (clickedProduct: LineItemType) => {
         setLineItems(current => {
             const isProductInCart = current.find(product => product._id === clickedProduct._id);
       
@@ -53,14 +53,8 @@ const POS = () => {
     };
 
     const removeLineItem = (clickedProduct: LineItemType) => {
-      for (let i = 0; i < lineItems.length; i++) {
-        if (lineItems[i]._id === clickedProduct._id) {
-          lineItems.splice(i, 1);
-          setLineItems([...lineItems]);
-          return;
-        }
-      }
-    };
+      setLineItems(prevItems => prevItems.filter(item => item._id !== clickedProduct._id));
+  };
 
     return (
       <Flex direction={["column", "row"]} mt={20}>
@@ -70,7 +64,7 @@ const POS = () => {
               <ProductCard
                 key={product._id}
                 product={product}
-                handleincreaseQuantity={handleincreaseQuantity}
+                increaseQuantity={increaseQuantity}
               />
             ))}
           </SimpleGrid>
@@ -78,7 +72,7 @@ const POS = () => {
         <Box flex="1" pl={5}>
           <Checkout
             lineItems={lineItems}
-            increaseQuantity={handleincreaseQuantity}
+            increaseQuantity={increaseQuantity}
             reduceQuantity={handlereduceQuantity}
             totalItems={totalItems}
             clearCart={clearCart}

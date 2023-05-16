@@ -34,17 +34,11 @@ const CreateProductForm = () => {
   
     try {
       await formSchema.validate(product);
-      try {
-        const response = await axios.post("/api/products/new", { ...product });
-        console.log(response);
-        setProduct({ name: "", imgurl: "", price: 0, brand: "" });
-        navigate("/");
-      } catch (error) {
-        console.error(error);
-      }
+      await axios.post("/api/products/new", { ...product });
+      setProduct({ name: "", imgurl: "", price: 0, brand: "" });
+      navigate("/");
     } catch (error) {
       const validationError = error as Error;
-      console.error(validationError);
       toast({
         title: "Validation Error",
         description: `Error: ${validationError.message}`,
@@ -54,6 +48,7 @@ const CreateProductForm = () => {
       });
     }   
   };
+  
   
 
 return (
