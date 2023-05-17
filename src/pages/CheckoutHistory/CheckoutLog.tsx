@@ -8,7 +8,9 @@ type CheckoutLogProps = {
     _id: string;
 }
 
-const CheckoutLog: React.FC<CheckoutLogProps> = ({ items, total, _id }) => {
+const CheckoutLog: React.FC<CheckoutLogProps> = (props: CheckoutLogProps ) => {
+  const { _id, items, total } = props
+  
     return (
       <Tr>
         <Td>{_id}</Td>

@@ -15,7 +15,7 @@ const LineItem: React.FC<Props> = ({ product, increaseQuantity, reduceQuantity, 
     </GridItem>
     <GridItem>
     <Grid templateColumns="repeat(6, 1fr)" alignItems="center">
-        <Button size='sm' variant='outline' onClick={() => reduceQuantity(product._id)} height="24px" width="24px">
+        <Button size='sm' variant='outline' onClick={() => reduceQuantity((product._id || ""))} height="24px" width="24px">
           -
         </Button>
         <h4>{product.quantity}</h4>
@@ -28,7 +28,7 @@ const LineItem: React.FC<Props> = ({ product, increaseQuantity, reduceQuantity, 
       <Text>${product.price}</Text>
     </GridItem>
     <GridItem>
-      <Text>${(product.quantity * product.price).toFixed(2)}</Text>
+      <Text>${((product.quantity || 0) * product.price).toFixed(2)}</Text>
     </GridItem>
     <GridItem>
     <Button size='sm' variant='outline' onClick={() => removeLineItem(product)} height="24px" width="60px">
