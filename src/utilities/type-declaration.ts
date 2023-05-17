@@ -1,20 +1,10 @@
-import { ObjectId } from 'mongodb';
-
-export type Product = {
-    _id?: ObjectId,
-    name: string,
-    imgurl: string,
-    price: number,
-    brand: string
-};
-
 export type LineItemType = {
-    _id: string,
+    _id?: string,
     name: string,
     imgurl: string;
     price: number;
     brand: string;
-    quantity: number;
+    quantity?: number;
   };
 
   export type SaleType = {

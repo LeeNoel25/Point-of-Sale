@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Button, FormControl, FormLabel, Input, Box, Flex, VStack, Heading, useToast } from '@chakra-ui/react';
 import * as yup from "yup"
-import { Product } from '../../utilities/type-declaration';
+import { LineItemType } from '../../utilities/type-declaration';
 import { useNavigate } from 'react-router-dom';
 
 const formSchema = yup.object().shape({
@@ -15,7 +15,7 @@ const formSchema = yup.object().shape({
 const CreateProductForm = () => {
   const navigate = useNavigate();
   const toast = useToast();
-    const [product, setProduct] = useState<Product>({
+    const [product, setProduct] = useState<LineItemType>({
     name: "",
     imgurl: "",
     price: 0,
@@ -38,10 +38,9 @@ const CreateProductForm = () => {
       setProduct({ name: "", imgurl: "", price: 0, brand: "" });
       navigate("/");
     } catch (error) {
-      const validationError = error as Error;
       toast({
         title: "Validation Error",
-        description: `Error: ${validationError.message}`,
+        description: `Error: ${error}`,
         status: "error",
         duration: 5000,
         isClosable: true,

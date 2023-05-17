@@ -16,12 +16,12 @@ const CheckoutHistoryPage = () => {
         <Heading as="h1" size="lg" mb={6} textAlign="center">
           Checkout Logs
         </Heading>
-        <Table variant="simple" size="md">
+        <Table >
           <Thead>
             <Tr>
-              <Th fontSize="lg" fontWeight="semibold">Sale ID</Th>
-              <Th fontSize="lg" fontWeight="semibold">Items</Th>
-              <Th fontSize="lg" fontWeight="semibold">Sale Total</Th>
+              <Th fontSize="lg" >Sale ID</Th>
+              <Th fontSize="lg" >Items</Th>
+              <Th fontSize="lg" >Sale Total</Th>
             </Tr>
           </Thead>
           <Tbody>
