@@ -17,7 +17,7 @@ const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, cl
   const toast = useToast();
 
   const calculateTotal = (products: LineItemType[]) =>
-    products.reduce((currentPrice: number, product) => currentPrice + product.quantity * product.price, 0);
+    products.reduce((currentPrice: number, product) => currentPrice + (product.quantity || 0) * product.price, 0);
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();

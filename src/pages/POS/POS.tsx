@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 // import { useEffect, useState } from "react";
-
 import ProductCard from "../../components/ProductCard";
 import { LineItemType}  from '../../utilities/type-declaration'
 import Checkout from '../../components/Checkout';
@@ -26,7 +25,7 @@ const POS = () => {
             if (isProductInCart) {
               return current.map(product =>
                 product._id === clickedProduct._id
-                  ? { ...product, quantity: product.quantity + 1 }
+                  ? { ...product, quantity: (product.quantity || 0) + 1 }
                   : product
               );
             }
@@ -39,7 +38,7 @@ const POS = () => {
         prev.reduce((cumulated, product) => {
           if (product._id === id) {
             if (product.quantity === 1) return cumulated;
-            return [...cumulated, { ...product, quantity: product.quantity - 1 }];
+            return [...cumulated, { ...product, quantity: (product.quantity || 0) - 1 }];
           } else {
             return [...cumulated, product];
           }
@@ -47,7 +46,7 @@ const POS = () => {
       );
     };
 
-    const totalItems = lineItems.reduce((cumulated: number, product) => cumulated + product.quantity, 0);
+    const totalItems = lineItems.reduce((cumulated: number, product) => cumulated + (product.quantity || 0), 0);
     const clearCart = () => {
       setLineItems([]);
     };
