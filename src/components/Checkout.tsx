@@ -2,18 +2,10 @@ import { LineItemType } from '../utilities/type-declaration'
 import LineItem from './LineItem';
 import { Box, Grid, Button, Text, Heading, useToast } from "@chakra-ui/react";
 import axios from 'axios';
+import { useLineItems } from '../components/LineItemsContext';
 
-type Props = {
-  lineItems: LineItemType[];
-  increaseQuantity: (clickedProduct: LineItemType) => void;
-  reduceQuantity: (id: string) => void;
-  totalItems: number;
-  clearCart: () => void;
-  removeLineItem: (clickedProduct: LineItemType) => void;
-};
-
-const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, clearCart, removeLineItem }) => {
-
+const Cart: React.FC = () => {
+  const { lineItems, clearCart } = useLineItems();
   const toast = useToast();
 
   const calculateTotal = (products: LineItemType[]) =>
@@ -62,9 +54,6 @@ const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, cl
             <LineItem
               key={product._id}
               product={product}
-              increaseQuantity={increaseQuantity}
-              reduceQuantity={reduceQuantity}
-              removeLineItem={removeLineItem}
             />
           ))}
           <Heading size="md" mt={5}>Total: ${calculateTotal(lineItems).toFixed(2)}</Heading>

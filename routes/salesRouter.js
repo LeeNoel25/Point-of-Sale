@@ -4,7 +4,6 @@ const salesController = require("../controllers/salesController");
 
 router
   .post("/", salesController.create)
-  //history page
   .get("/history", salesController.index)
   .delete("/history/:id", salesController.delete);
 

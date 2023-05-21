@@ -45,7 +45,6 @@ const CheckoutHistoryPage = () => {
       </Box>
     </Flex>
   );
-
 };
 
 export default CheckoutHistoryPage;

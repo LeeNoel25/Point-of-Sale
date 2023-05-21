@@ -24,5 +24,4 @@ const CheckoutLog: React.FC<CheckoutLogProps> = ({_id, items, total}) => {
   );
 };
 
-
 export default CheckoutLog;

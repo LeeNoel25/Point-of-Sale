@@ -34,7 +34,7 @@ const CreateProductForm = () => {
 
     try {
       await formSchema.validate(product);
-      await axios.post("/api/products/new", { product });
+      await axios.post("/api/products/new", product);
       setProduct({ name: "", imgurl: "", price: 0, brand: "" });
       toast({
         title: "Product Created.",
@@ -43,7 +43,7 @@ const CreateProductForm = () => {
         duration: 5000,
         isClosable: true,
       });
-      navigate("/"); // optional
+      navigate("/");
     } catch (error) {
       toast({
         title: "Validation Error",
