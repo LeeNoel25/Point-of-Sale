@@ -2,7 +2,7 @@ import { Container } from '@chakra-ui/react';
 import CreateProductForm from './CreateProductForm';
 
 const CreateProductPage = () => {
-    return(
+    return (
         <Container >
             <CreateProductForm />
         </Container>

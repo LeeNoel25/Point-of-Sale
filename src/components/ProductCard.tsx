@@ -1,7 +1,7 @@
 import { Box, Image, Text, Button, AspectRatio, Flex } from "@chakra-ui/react";
 import { LineItemType } from '../utilities/type-declaration'
 
-interface Props {
+type Props = {
   product: LineItemType;
   increaseQuantity: (clickedItem: LineItemType) => void;
 }

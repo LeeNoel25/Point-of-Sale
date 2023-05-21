@@ -1,10 +1,9 @@
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import NavBar from './components/NavBar'
-import { Container } from '@chakra-ui/react';
+import { Container, Box } from '@chakra-ui/react';
 import CreateProduct from './pages/CreateProduct/CreateProductPage';
 import CheckoutHistoryPage from './pages/CheckoutHistory/CheckoutHistoryPage';
 import POS from './pages/POS/POS';
-import { Box } from "@chakra-ui/react";
 
 export default function App() {
   return (

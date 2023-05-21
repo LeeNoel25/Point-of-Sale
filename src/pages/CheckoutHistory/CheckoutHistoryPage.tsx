@@ -1,13 +1,25 @@
-import { useQuery } from 'react-query';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Flex, Heading, Box, Spinner } from "@chakra-ui/react";
 import { SaleType } from '../../utilities/type-declaration'
 import CheckoutLog from './CheckoutLog';
 
-const getCheckoutLogs = async (): Promise<SaleType[]> =>
-  (await fetch("/api/sale/history")).json();
+const getCheckoutLogs = async (): Promise<SaleType[]> => {
+  const response = await axios.get("/api/sale/history");
+  return response.data;
+};
 
 const CheckoutHistoryPage = () => {
-  const { data, isLoading } = useQuery<SaleType[]>('checkoutLogs', getCheckoutLogs);
+  const [data, setData] = useState<SaleType[] | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getCheckoutLogs().then((checkoutLogs) => {
+      setData(checkoutLogs);
+      setIsLoading(false);
+    });
+  }, []);
+
   if (isLoading) return <Spinner />;
 
   return (
@@ -33,7 +45,7 @@ const CheckoutHistoryPage = () => {
       </Box>
     </Flex>
   );
-  
+
 };
 
 export default CheckoutHistoryPage;

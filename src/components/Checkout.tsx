@@ -1,15 +1,15 @@
-import { LineItemType}  from '../utilities/type-declaration'
+import { LineItemType } from '../utilities/type-declaration'
 import LineItem from './LineItem';
 import { Box, Grid, Button, Text, Heading, useToast } from "@chakra-ui/react";
 import axios from 'axios';
 
 type Props = {
-    lineItems: LineItemType[];
-    increaseQuantity: (clickedProduct: LineItemType) => void;
-    reduceQuantity: (id: string) => void;
-    totalItems: number;
-    clearCart: () => void;
-    removeLineItem: (clickedProduct: LineItemType) => void;
+  lineItems: LineItemType[];
+  increaseQuantity: (clickedProduct: LineItemType) => void;
+  reduceQuantity: (id: string) => void;
+  totalItems: number;
+  clearCart: () => void;
+  removeLineItem: (clickedProduct: LineItemType) => void;
 };
 
 const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, clearCart, removeLineItem }) => {
@@ -24,7 +24,7 @@ const Cart: React.FC<Props> = ({ lineItems, increaseQuantity, reduceQuantity, cl
     const total = calculateTotal(lineItems);
 
     axios.post(`/api/sale`, { items: lineItems, total })
-    .then((response) => {
+      .then((response) => {
         console.log(response);
         clearCart();
         toast({

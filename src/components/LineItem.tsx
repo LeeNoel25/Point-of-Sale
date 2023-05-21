@@ -1,11 +1,11 @@
-import { LineItemType}  from '../utilities/type-declaration'
-import {  Button, Grid, GridItem, Text } from "@chakra-ui/react";
+import { LineItemType } from '../utilities/type-declaration'
+import { Button, Grid, GridItem, Text } from "@chakra-ui/react";
 
 type Props = {
-    product: LineItemType;
-    increaseQuantity: (clickedItem: LineItemType) => void;
-    reduceQuantity: (id: string) => void;
-    removeLineItem: (clickedItem: LineItemType) => void;
+  product: LineItemType;
+  increaseQuantity: (clickedItem: LineItemType) => void;
+  reduceQuantity: (id: string) => void;
+  removeLineItem: (clickedItem: LineItemType) => void;
 };
 
 const LineItem: React.FC<Props> = ({ product, increaseQuantity, reduceQuantity, removeLineItem }) => (
@@ -14,7 +14,7 @@ const LineItem: React.FC<Props> = ({ product, increaseQuantity, reduceQuantity, 
       <h4>{product.name}</h4>
     </GridItem>
     <GridItem>
-    <Grid templateColumns="repeat(6, 1fr)" alignItems="center">
+      <Grid templateColumns="repeat(6, 1fr)" alignItems="center">
         <Button size='sm' variant='outline' onClick={() => reduceQuantity((product._id || ""))} height="24px" width="24px">
           -
         </Button>
@@ -31,9 +31,9 @@ const LineItem: React.FC<Props> = ({ product, increaseQuantity, reduceQuantity, 
       <Text>${((product.quantity || 0) * product.price).toFixed(2)}</Text>
     </GridItem>
     <GridItem>
-    <Button size='sm' variant='outline' onClick={() => removeLineItem(product)} height="24px" width="60px">
-      Remove
-    </Button>
+      <Button size='sm' variant='outline' onClick={() => removeLineItem(product)} height="24px" width="60px">
+        Remove
+      </Button>
     </GridItem>
   </Grid>
 );
