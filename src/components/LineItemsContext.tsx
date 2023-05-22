@@ -1,12 +1,12 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { LineItemType}  from '../utilities/type-declaration'
+import { LineItemType } from '../utilities/type-declaration'
 
 type ContextType = {
-  lineItems: LineItemType[],
+  cartItems: LineItemType[],
   increaseQuantity: (product: LineItemType) => void,
   reduceQuantity: (id: string) => void,
   removeLineItem: (product: LineItemType) => void,
-  clearCart: () => void,  
+  clearCart: () => void,
 };
 
 const LineItemsContext = createContext<ContextType | undefined>(undefined);
@@ -24,29 +24,29 @@ type LineItemsProviderProps = {
 }
 
 const LineItemsProvider = ({ children }: LineItemsProviderProps) => {
-  const [lineItems, setLineItems] = useState<LineItemType[]>([]);
+  const [cartItems, setLineItems] = useState<LineItemType[]>([]);
 
   const increaseQuantity = (clickedProduct: LineItemType) => {
     setLineItems(products => {
-        const isProductInCart = products.find(product => product._id === clickedProduct._id);
-        if (isProductInCart) {
-          return products.map(product => product._id === clickedProduct._id ? { ...product, quantity: (product.quantity || 0) + 1 } : product);
-        }
-        return [...products, { ...clickedProduct, quantity: 1 }];
-      });
+      const isProductInCart = products.find(product => product._id === clickedProduct._id);
+      if (isProductInCart) {
+        return products.map(product => product._id === clickedProduct._id ? { ...product, quantity: (product.quantity || 0) + 1 } : product);
+      }
+      return [...products, { ...clickedProduct, quantity: 1 }];
+    });
   };
 
   const reduceQuantity = (id: string) => {
     setLineItems(currentLineItems =>
-        currentLineItems.reduce((newLineItems, product) => {
-          if (product._id === id) {
-            if (product.quantity === 1) return newLineItems;
-            return [...newLineItems, { ...product, quantity: (product.quantity || 0) - 1 }];
-          } else {
-            return [...newLineItems, product];
-          }
-        }, [] as LineItemType[])
-      );
+      currentLineItems.reduce((newLineItems, product) => {
+        if (product._id === id) {
+          if (product.quantity === 1) return newLineItems;
+          return [...newLineItems, { ...product, quantity: (product.quantity || 0) - 1 }];
+        } else {
+          return [...newLineItems, product];
+        }
+      }, [] as LineItemType[])
+    );
   };
 
   const removeLineItem = (clickedProduct: LineItemType) => {
@@ -58,7 +58,7 @@ const LineItemsProvider = ({ children }: LineItemsProviderProps) => {
   };
 
   const value = {
-    lineItems,
+    cartItems,
     setLineItems,
     increaseQuantity,
     reduceQuantity,

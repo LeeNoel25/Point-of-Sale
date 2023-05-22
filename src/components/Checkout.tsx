@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useLineItems } from '../components/LineItemsContext';
 
 const Cart: React.FC = () => {
-  const { lineItems, clearCart } = useLineItems();
+  const { cartItems, clearCart } = useLineItems();
   const toast = useToast();
 
   const calculateTotal = (products: LineItemType[]) =>
@@ -13,9 +13,9 @@ const Cart: React.FC = () => {
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
-    const total = calculateTotal(lineItems);
+    const total = calculateTotal(cartItems);
 
-    axios.post(`/api/sale`, { items: lineItems, total })
+    axios.post(`/api/sale`, { items: cartItems, total })
       .then((response) => {
         console.log(response);
         clearCart();
@@ -41,8 +41,8 @@ const Cart: React.FC = () => {
 
   return (
     <Box bg="white" boxShadow="base" p={5} borderRadius="md">
-      <Heading size="lg" mb={5}>Shopping Cart ({lineItems.length} items)</Heading>
-      {lineItems.length === 0 ? <Text>No items in cart.</Text> : (
+      <Heading size="lg" mb={5}>Shopping Cart ({cartItems.length} items)</Heading>
+      {cartItems.length === 0 ? <Text>No items in cart.</Text> : (
         <>
           <Grid templateColumns="repeat(5, 1fr)" gap={6} alignItems="center" mb={5}>
             <Text fontWeight="bold">Name</Text>
@@ -50,13 +50,13 @@ const Cart: React.FC = () => {
             <Text fontWeight="bold">Price</Text>
             <Text fontWeight="bold">Total</Text>
           </Grid>
-          {lineItems.map(product => (
+          {cartItems.map(product => (
             <LineItem
               key={product._id}
               product={product}
             />
           ))}
-          <Heading size="md" mt={5}>Total: ${calculateTotal(lineItems).toFixed(2)}</Heading>
+          <Heading size="md" mt={5}>Total: ${calculateTotal(cartItems).toFixed(2)}</Heading>
           <Button colorScheme="teal" onClick={handleSubmit} mt={5}>Create Sale</Button>
         </>
       )}
