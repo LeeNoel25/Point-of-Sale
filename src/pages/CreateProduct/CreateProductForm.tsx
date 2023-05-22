@@ -57,7 +57,7 @@ const CreateProductForm = () => {
 
   return (
     <Flex justifyContent="center" alignItems="center" height="60vh">
-      <Box p={8} borderRadius="md" bg="white" boxShadow="base" width="100%">
+      <Box p={8} bg="white" boxShadow="base" width="100%">
         <Heading as="h1" size="lg" textAlign="center" mb={5}>
           New Product
         </Heading>
