@@ -1,13 +1,13 @@
-import { LineItemType } from '../../utilities/type-declaration';
+import { ProductType } from '../../utilities/type-declaration';
 import { Tr, Td, Box, Text } from "@chakra-ui/react";
 
 type CheckoutLogProps = {
-  items: LineItemType[];
+  items: ProductType[];
   total: number;
   _id: string;
 }
 
-const CheckoutLog: React.FC<CheckoutLogProps> = ({_id, items, total}) => {
+const CheckoutLog: React.FC<CheckoutLogProps> = ({ _id, items, total }) => {
 
   return (
     <Tr>

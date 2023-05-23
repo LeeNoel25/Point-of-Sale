@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Button, FormControl, FormLabel, Input, Box, Flex, VStack, Heading, useToast } from '@chakra-ui/react';
 import * as yup from "yup"
-import { LineItemType } from '../../utilities/type-declaration';
+import { ProductType } from '../../utilities/type-declaration';
 import { useNavigate } from 'react-router-dom';
 
 const formSchema = yup.object().shape({
@@ -15,7 +15,7 @@ const formSchema = yup.object().shape({
 const CreateProductForm = () => {
   const navigate = useNavigate();
   const toast = useToast();
-  const [product, setProduct] = useState<LineItemType>({
+  const [product, setProduct] = useState<ProductType>({
     name: "",
     imgurl: "",
     price: 0,

@@ -1,13 +1,13 @@
 import { Button, Grid, GridItem, Text } from "@chakra-ui/react";
-import { LineItemType } from '../utilities/type-declaration';
-import { useLineItems } from './LineItemsContext'
+import { ProductType } from '../utilities/type-declaration';
+import { useCart } from './CartContext'
 
 type Props = {
-  product: LineItemType;
+  product: ProductType;
 };
 
 const LineItem: React.FC<Props> = ({ product }) => {
-  const { increaseQuantity, reduceQuantity, removeLineItem } = useLineItems();
+  const { increaseQuantity, reduceQuantity, removeCartItem } = useCart();
 
   return (
     <Grid templateColumns="repeat(5, 1fr)" gap={6}>
@@ -37,7 +37,7 @@ const LineItem: React.FC<Props> = ({ product }) => {
       </GridItem>
 
       <GridItem>
-        <Button size='sm' variant='outline' onClick={() => removeLineItem(product)} height="24px" width="60px">
+        <Button size='sm' variant='outline' onClick={() => removeCartItem(product)} height="24px" width="60px">
           Remove
         </Button>
       </GridItem>

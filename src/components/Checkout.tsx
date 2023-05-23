@@ -1,14 +1,14 @@
-import { LineItemType } from '../utilities/type-declaration'
-import LineItem from './LineItem';
+import { ProductType } from '../utilities/type-declaration'
+import LineItem from './CartItem';
 import { Box, Grid, Button, Text, Heading, useToast } from "@chakra-ui/react";
 import axios from 'axios';
-import { useLineItems } from '../components/LineItemsContext';
+import { useCart } from './CartContext';
 
 const Cart: React.FC = () => {
-  const { cartItems, clearCart } = useLineItems();
+  const { cartItems, clearCart } = useCart();
   const toast = useToast();
 
-  const calculateTotal = (products: LineItemType[]) =>
+  const calculateTotal = (products: ProductType[]) =>
     products.reduce((currentPrice: number, product) => currentPrice + (product.quantity || 0) * product.price, 0);
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

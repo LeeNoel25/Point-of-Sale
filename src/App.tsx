@@ -4,7 +4,7 @@ import { Container, Box } from '@chakra-ui/react';
 import CreateProduct from './pages/CreateProduct/CreateProductPage';
 import CheckoutHistoryPage from './pages/CheckoutHistory/CheckoutHistoryPage';
 import POS from './pages/POS/POS';
-import { LineItemsProvider } from './components/LineItemsContext';
+import { CartProvider } from './components/CartContext';
 
 export default function App() {
   return (
@@ -12,13 +12,13 @@ export default function App() {
       <Router>
         <NavBar />
         <Container maxW="100%" >
-          <LineItemsProvider>
+          <CartProvider>
             <Routes>
               <Route path="/" element={<POS />} />
               <Route path="/new" element={<CreateProduct />} />
               <Route path="/history" element={<CheckoutHistoryPage />} />
             </Routes>
-          </LineItemsProvider>
+          </CartProvider>
         </Container>
       </Router>
     </Box>

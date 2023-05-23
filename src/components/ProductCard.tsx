@@ -1,13 +1,13 @@
 import { Box, Image, Text, Button, AspectRatio, Flex } from "@chakra-ui/react";
-import { LineItemType } from '../utilities/type-declaration'
-import { useLineItems } from './/LineItemsContext'
+import { ProductType } from '../utilities/type-declaration'
+import { useCart } from './CartContext'
 
 type Props = {
-  product: LineItemType;
+  product: ProductType;
 }
 
 const ProductCard: React.FC<Props> = ({ product }) => {
-  const { increaseQuantity } = useLineItems();
+  const { increaseQuantity } = useCart();
 
   return (
     <Box bg="white" boxShadow="base" p={5} borderRadius="md">

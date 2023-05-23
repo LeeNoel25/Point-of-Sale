@@ -1,4 +1,4 @@
-export type LineItemType = {
+export type ProductType = {
   _id?: string,
   name: string,
   imgurl: string;
@@ -9,7 +9,7 @@ export type LineItemType = {
 
 export type SaleType = {
   _id: string;
-  items: LineItemType[];
+  items: ProductType[];
   total: number;
   timestamps: string;
 };
