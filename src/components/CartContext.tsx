@@ -50,7 +50,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
   };
 
   const removeCartItem = (selectedProduct: ProductType) => {
-    setCartItems(currentCartItems => currentCartItems.filter(item => item._id !== selectedProduct._id));
+    setCartItems(currentCartItems => currentCartItems.filter(product => product._id !== selectedProduct._id));
   };
 
   const clearCart = () => {
