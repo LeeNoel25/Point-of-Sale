@@ -1,5 +1,5 @@
 import { ProductType } from '../utilities/type-declaration'
-import LineItem from './CartItem';
+import CartItem from './CartItem';
 import { Box, Grid, Button, Text, Heading, useToast } from "@chakra-ui/react";
 import axios from 'axios';
 import { useCart } from './CartContext';
@@ -51,7 +51,7 @@ const Cart: React.FC = () => {
             <Text fontWeight="bold">Total</Text>
           </Grid>
           {cartItems.map(product => (
-            <LineItem
+            <CartItem
               key={product._id}
               product={product}
             />

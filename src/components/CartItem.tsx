@@ -6,7 +6,7 @@ type Props = {
   product: ProductType;
 };
 
-const LineItem: React.FC<Props> = ({ product }) => {
+const CartItem: React.FC<Props> = ({ product }) => {
   const { increaseQuantity, reduceQuantity, removeCartItem } = useCart();
 
   return (
@@ -46,4 +46,4 @@ const LineItem: React.FC<Props> = ({ product }) => {
   );
 };
 
-export default LineItem;
+export default CartItem;
